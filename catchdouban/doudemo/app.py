@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-import datetime
+import sqlite3
 
 app = Flask(__name__)
 
@@ -27,8 +27,19 @@ def index():
 
 @app.route('/portfolio.html')
 def portfolio():
-    return render_template('portfolio.html')
+    datalist = []
+    con =sqlite3.connect("movie.db")
+    cur = con.cursor()
+    sql = "select imgsrc,title,id,otitle,link  from top250 ;"
+    data = cur.execute(sql)
+    for item in data:
+        datalist.append(item)
+    cur.close()
+    con.close()
+
+    return render_template('portfolio.html', movies=datalist)
 
 
 if __name__ == '__main__':
     app.run()
+

@@ -74,15 +74,15 @@
 
         <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
 
-           {% for i in range(0, 250) %}
+           {% for movie in  movies %}
           <div class="col-lg-4 col-md-6 portfolio-item filter-web">
             <div class="portfolio-wrap">
-              <img src="static/assets/img/portfolio/p2561716440.jpg" class="img-fluid" alt="">
+              <img src="static/assets/img/portfolio/{{ movie[0].split('/')[7] }}" class="img-fluid" alt="">
               <div class="portfolio-info">
-                <h4>霸王别姬</h4>
-                <p>{{ i+1}}-bawangbieji</p>
+                <h4>{{ movie[1] }}</h4>
+                <p>排名{{movie[2]}}-{{movie[3]}}</p>
                 <div class="portfolio-links">
-                  <a href="https://movie.douban.com/subject/1291546/" data-gall="portfolioDetailsGallery" data-vbtype="iframe" class="venobox" title="影片详情"><i class="bx bx-link"></i></a>
+                  <a href="{{ movie[4] }}" data-gall="portfolioDetailsGallery" data-vbtype="iframe" class="venobox" title="影片详情"><i class="bx bx-link"></i></a>
                 </div>
               </div>
             </div>
