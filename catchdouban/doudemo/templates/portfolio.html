@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Portfolio - Kelly Bootstrap Template</title>
+  <title>豆瓣电影TOP250</title>
   <meta content="" name="descriptison">
   <meta content="" name="keywords">
 
@@ -51,7 +51,6 @@
           <li class="active"><a href="portfolio.html">电影</a></li>
           <li><a href="about.html">详情</a></li>
           <li><a href="resume.html">评分</a></li>
-          <li><a href="services.html">词云</a></li>
           <li><a href="contact.html">联系我们</a></li>
 
         </ul>
@@ -74,11 +73,11 @@
 
         <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
 
-           {% for movie in  movies %}
+        {% for movie in  movies %}
           <div class="col-lg-4 col-md-6 portfolio-item filter-web">
             <div class="portfolio-wrap">
-              <img src="static/assets/img/portfolio/{{ movie[0].split('/')[7] }}" class="img-fluid" alt="">
-              <div class="portfolio-info">
+                <img src="static/assets/img/portfolio/{{ movie[0].split('/')[7] }}" class="img-fluid" alt="" onerror="this.src='static/assets/img/portfolio/default.jpg'">
+                <div class="portfolio-info">
                 <h4>{{ movie[1] }}</h4>
                 <p>排名{{movie[2]}}-{{movie[3]}}</p>
                 <div class="portfolio-links">
@@ -87,7 +86,7 @@
               </div>
             </div>
           </div>
-           {% endfor %}
+        {% endfor %}
 
         </div>
 

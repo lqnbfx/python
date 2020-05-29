@@ -7,6 +7,7 @@ import re
 import urllib.request, urllib.error
 import xlwt
 import sqlite3
+import os
 
 def main():
     baseurl = 'https://movie.douban.com/top250?start='
@@ -150,7 +151,24 @@ def  save2db(datalist):
     cur.close()
     conn.close()
 
+def downimg():
+    head = {
+        "User-Agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Mobile Safari/537.36"
+    }
+    picpath = os.path.abspath('..')+"\\doudemon\\static\\assets\\img\\portfolio\\"
+    conn = sqlite3.connect("douban.db")
+    cur = conn.cursor()
+    imgsrc = cur.execute("select imgsrc from top250 where id < 4;")
+    for img in imgsrc:
+        if not os.path.isfile(picpath+img.split('/')[7]):
+            urllib.request.urlretrieve(img, filename=img.split('/')[7])
+
+
+
+
+
 
 if __name__ == '__main__':
-    main()
+    #main()
+    downimg()
     print("抓取完成")
